@@ -19,29 +19,39 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TableRow
+            style="?android:attr/buttonBarStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <Button
                 android:id="@+id/button-increment"
+                style="@style/Widget.AppCompat.Button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/increment" />
+                android:onClick="increment"
+                android:text="@string/increment"
+                android:textSize="12sp" />
 
             <Button
                 android:id="@+id/button-decrement"
+                style="@style/Widget.AppCompat.Button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/decrement" />
+                android:onClick="decrement"
+                android:text="@string/decrement"
+                android:textSize="12sp" />
 
             <Button
                 android:id="@+id/button-reset"
+                style="@style/Widget.AppCompat.Button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/reset" />
+                android:onClick="reset"
+                android:text="@string/reset"
+                android:textSize="12sp" />
         </TableRow>
 
         <TableRow
@@ -49,19 +59,21 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/label-counter"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:padding="3dp"
                 android:text="@string/counter"
-                android:textAlignment="center"
+                android:textAlignment="textEnd"
                 android:textSize="30sp" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/result"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:padding="3dp"
                 android:text="@string/result"
                 android:textAlignment="center"
                 android:textColor="#3F51B5"
