@@ -25,33 +25,33 @@
 
             <Button
                 android:id="@+id/button-increment"
-                style="@style/Widget.AppCompat.Button"
+                style="@android:style/Widget.Button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="increment"
                 android:text="@string/increment"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
 
             <Button
                 android:id="@+id/button-decrement"
-                style="@style/Widget.AppCompat.Button"
+                style="@android:style/Widget.Button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="decrement"
                 android:text="@string/decrement"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
 
             <Button
                 android:id="@+id/button-reset"
-                style="@style/Widget.AppCompat.Button"
+                style="@android:style/Widget.Button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="reset"
                 android:text="@string/reset"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
         </TableRow>
 
         <TableRow
