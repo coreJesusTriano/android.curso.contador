@@ -7,4 +7,5 @@
     <string name="reset">Reiniciar</string>
     <string name="counter">Contador:</string>
     <string name="result">Resultado</string>
+    <string name="negative">Permite números negativos</string>
 </resources>

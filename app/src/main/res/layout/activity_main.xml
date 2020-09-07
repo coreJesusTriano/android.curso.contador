@@ -19,6 +19,20 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <CheckBox
+                android:id="@+id/cB_negative"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/negative"
+                android:checked="true"
+                android:onClick="Verify"
+                />
+        </TableRow>
+
+        <TableRow
             style="?android:attr/buttonBarStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
