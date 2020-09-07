@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Contador</string>
+
+
+    <string name="increment">Incrementar</string>
+    <string name="decrement">Decrementar</string>
+    <string name="reset">Reiniciar</string>
+    <string name="counter">Contador:</string>
+    <string name="result">Resultado</string>
+</resources>
