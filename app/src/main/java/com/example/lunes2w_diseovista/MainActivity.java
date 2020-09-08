@@ -21,9 +21,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Establecemos nuestra interfaz
         setContentView(R.layout.activity_main);
+        // Inicializamos el contador y lo mostramos
         counter = 0;
         showCounter();
+        // Establecemos los escuchadores de eventos
         this.negative = findViewById(R.id.cB_negative);
         negative.setOnClickListener(this);
         Button reset = findViewById(R.id.button_reset);
@@ -36,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         EditText value = findViewById(R.id.default_counter);
         value.setOnEditorActionListener(eTeclado);
     }
+
     public void increment(View view) {
         counter++;
         showCounter();
