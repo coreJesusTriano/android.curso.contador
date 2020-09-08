@@ -3,7 +3,9 @@ package com.example.lunes2w_diseovista;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -30,6 +32,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         incr.setOnClickListener(this);
         Button decr = findViewById(R.id.button_decrement);
         decr.setOnClickListener(this);
+        EventoTeclado eTeclado = new EventoTeclado();
+        EditText value = findViewById(R.id.default_counter);
+        value.setOnEditorActionListener(eTeclado);
     }
     public void increment(View view) {
         counter++;
@@ -85,6 +90,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.button_decrement:
                 decrement(view);
                 break;
+        }
+    }
+
+    public class EventoTeclado implements TextView.OnEditorActionListener {
+
+        @Override
+        public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+            if (i== EditorInfo.IME_ACTION_DONE){
+                reset(null);
+            }
+            return false;
         }
     }
 }
