@@ -5,10 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-
     private int counter;
     private CheckBox negative;
 
@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.negative = findViewById(R.id.cB_negative);
         negative.setOnClickListener(this);
     }
-
     public void increment(View view) {
         counter++;
         showCounter();
@@ -36,7 +35,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void reset(View vista) {
-        counter = 0;
+        EditText defaultCounter = findViewById(R.id.default_counter);
+        String valorString = defaultCounter.getText().toString();
+        if (valorString.isEmpty()) {
+            valorString = "0";
+        }
+        counter = Integer.parseInt(valorString);
         showCounter();
     }
 

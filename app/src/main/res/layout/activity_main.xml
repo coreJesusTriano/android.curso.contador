@@ -93,6 +93,29 @@
                 android:textSize="30sp" />
         </TableRow>
 
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/label_default_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label2"
+                android:labelFor="@id/default_counter"
+                android:textAlignment="viewEnd" />
+
+            <EditText
+                android:id="@+id/default_counter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberSigned"
+                android:importantForAutofill="no"
+                android:textAlignment="center" />
+        </TableRow>
+            <!--android: autofillHints="number" // the type of content you want-->
+
     </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
