@@ -37,7 +37,7 @@
             android:layout_height="match_parent">
 
             <Button
-                android:id="@+id/button-increment"
+                android:id="@+id/button_increment"
                 style="@android:style/Widget.Button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
                 android:textSize="13sp" />
 
             <Button
-                android:id="@+id/button-decrement"
+                android:id="@+id/button_decrement"
                 style="@android:style/Widget.Button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -57,12 +57,11 @@
                 android:textSize="13sp" />
 
             <Button
-                android:id="@+id/button-reset"
+                android:id="@+id/button_reset"
                 style="@android:style/Widget.Button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:onClick="reset"
                 android:text="@string/reset"
                 android:textSize="13sp" />
         </TableRow>
@@ -72,7 +71,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/label-counter"
+                android:id="@+id/label_counter"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -114,7 +113,7 @@
                 android:importantForAutofill="no"
                 android:textAlignment="center" />
         </TableRow>
-            <!--android: autofillHints="number" // the type of content you want-->
+            <!--android:autofillHints="numberSigned" // the type of content you want-->
 
     </TableLayout>
 
