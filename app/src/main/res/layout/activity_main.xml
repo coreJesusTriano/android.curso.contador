@@ -42,7 +42,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:onClick="increment"
                 android:text="@string/increment"
                 android:textSize="13sp" />
 
@@ -52,7 +51,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:onClick="decrement"
                 android:text="@string/decrement"
                 android:textSize="13sp" />
 
@@ -94,23 +92,25 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/label_default_value"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/label2"
+                android:layout_weight="1"
                 android:labelFor="@id/default_counter"
+                android:text="@string/label2"
                 android:textAlignment="viewEnd" />
 
             <EditText
                 android:id="@+id/default_counter"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:ems="10"
-                android:inputType="numberSigned"
                 android:importantForAutofill="no"
+                android:inputType="numberSigned"
                 android:textAlignment="center" />
         </TableRow>
             <!--android:autofillHints="numberSigned" // the type of content you want-->

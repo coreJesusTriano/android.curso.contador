@@ -10,10 +10,11 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     private int counter;
     private CheckBox negative;
-    private Button reset;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +24,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         showCounter();
         this.negative = findViewById(R.id.cB_negative);
         negative.setOnClickListener(this);
-        this.reset = findViewById(R.id.button_reset);
+        Button reset = findViewById(R.id.button_reset);
         reset.setOnClickListener(this);
+        Button incr = findViewById(R.id.button_increment);
+        incr.setOnClickListener(this);
+        Button decr = findViewById(R.id.button_decrement);
+        decr.setOnClickListener(this);
     }
     public void increment(View view) {
         counter++;
@@ -40,14 +45,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void reset(View vista) {
-        InputMethodManager teclado = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
         EditText defaultCounter = findViewById(R.id.default_counter);
         String counterDefaultString = defaultCounter.getText().toString();
         if (counterDefaultString.isEmpty()) {
             counterDefaultString = "0";
         }
         counter = Integer.parseInt(counterDefaultString);
-        teclado.hideSoftInputFromWindow(defaultCounter.getWindowToken(),0);
         showCounter();
     }
 
@@ -56,17 +59,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         status.setText(String.valueOf(counter));
     }
 
+    public void hideKeyboard(View view){
+        InputMethodManager keyboard = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+        if (keyboard.isActive()){
+            keyboard.hideSoftInputFromWindow(Objects.requireNonNull(getCurrentFocus()).getWindowToken(),0);
+        }
+    }
+
     @Override
     public void onClick(View view) {
+        hideKeyboard(view);
         switch (view.getId()){
             case R.id.cB_negative:
                 if (!negative.isChecked() && counter<0){
                     counter=0;
-                    showCounter();
                 }
+                showCounter();
                 break;
             case R.id.button_reset:
                 reset(view);
+                break;
+            case R.id.button_increment:
+                increment(view);
+                break;
+            case R.id.button_decrement:
+                decrement(view);
                 break;
         }
     }
