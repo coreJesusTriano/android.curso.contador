@@ -36,11 +36,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void reset(View vista) {
         EditText defaultCounter = findViewById(R.id.default_counter);
-        String valorString = defaultCounter.getText().toString();
-        if (valorString.isEmpty()) {
-            valorString = "0";
+        String counterDefaultString = defaultCounter.getText().toString();
+        if (counterDefaultString.isEmpty()) {
+            counterDefaultString = "0";
         }
-        counter = Integer.parseInt(valorString);
+        counter = Integer.parseInt(counterDefaultString);
         showCounter();
     }
 
