@@ -3,7 +3,10 @@ package com.example.lunes2w_diseovista;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.Preference;
+import android.preference.PreferenceManager;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -40,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         EditText value = findViewById(R.id.default_counter);
         value.setOnEditorActionListener(eTeclado);
     }
+/*  Comentamos estos métodos para probar como guardar los datos persistentemente.
 
     // Se ejecuta antes de detener la actividad
     @Override
@@ -53,6 +57,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         counter = savedInstanceState.getInt("counterValue");
+        showCounter();
+    }
+*/
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // Usaremos la clase SharedPreferences para guardar los datos como preferencias
+        SharedPreferences data = (SharedPreferences) PreferenceManager.getDefaultSharedPreferences(this);
+        // Usamos la subclase Editor para hacer modificaciones
+        SharedPreferences.Editor myEdit = data.edit();
+        // Hacemos la modificacion
+        myEdit.putInt("counterValue", counter);
+        // Aplicamos los cambios
+        myEdit.apply();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences data = (SharedPreferences) PreferenceManager.getDefaultSharedPreferences(this);
+        counter = data.getInt("counterValue", 0);
         showCounter();
     }
 
