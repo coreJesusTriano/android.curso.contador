@@ -1,5 +1,6 @@
 package com.example.lunes2w_diseovista;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -38,6 +39,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         EventoTeclado eTeclado = new EventoTeclado();
         EditText value = findViewById(R.id.default_counter);
         value.setOnEditorActionListener(eTeclado);
+    }
+
+    // Se ejecuta antes de detener la actividad
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putInt("counterValue", counter);
+        super.onSaveInstanceState(outState);
+    }
+
+    //  Se ejecuta tras onCreate() solo si hay un estado guardado para restablecer
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        counter = savedInstanceState.getInt("counterValue");
+        showCounter();
     }
 
     public void increment(View view) {
