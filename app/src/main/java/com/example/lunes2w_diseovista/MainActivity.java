@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.view.KeyEvent;
 import android.view.View;
@@ -20,6 +19,7 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     private int counter;
+    private int valueDefault;
     private CheckBox negative;
 
     @Override
@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Inicializamos el contador y lo mostramos
         counter = 0;
         showCounter();
+        showDefault();
         // Establecemos los escuchadores de eventos
         this.negative = findViewById(R.id.cB_negative);
         negative.setOnClickListener(this);
@@ -70,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         SharedPreferences.Editor myEdit = data.edit();
         // Hacemos la modificacion
         myEdit.putInt("counterValue", counter);
+        myEdit.putInt("valueDefault", valueDefault);
         // Aplicamos los cambios
         myEdit.apply();
     }
@@ -79,7 +81,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onResume();
         SharedPreferences data = (SharedPreferences) PreferenceManager.getDefaultSharedPreferences(this);
         counter = data.getInt("counterValue", 0);
+        valueDefault = data.getInt("valueDefault", 0);
         showCounter();
+        showDefault();
     }
 
     public void increment(View view) {
@@ -102,12 +106,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             counterDefaultString = "0";
         }
         counter = Integer.parseInt(counterDefaultString);
+        valueDefault = counter;
         showCounter();
     }
 
     public void showCounter() {
         TextView status = findViewById(R.id.result);
         status.setText(String.valueOf(counter));
+    }
+    public void showDefault(){
+        if (valueDefault !=0){
+            EditText defaultCounter = findViewById(R.id.default_counter);
+            defaultCounter.setText(String.valueOf(valueDefault));
+        }
     }
 
     public void hideKeyboard(View view){
