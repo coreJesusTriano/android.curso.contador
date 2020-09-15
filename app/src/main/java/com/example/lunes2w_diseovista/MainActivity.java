@@ -1,6 +1,5 @@
 package com.example.lunes2w_diseovista;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
@@ -21,16 +20,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private int counter;
     private int valueDefault;
     private CheckBox negative;
+    private TextView stateCounter;
+    private EditText defaultCounter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Establecemos nuestra interfaz
         setContentView(R.layout.activity_main);
-        // Inicializamos el contador y lo mostramos
+        // Inicializamos el contador, los controles de vista y los mostramos
         counter = 0;
-        showCounter();
-        showDefault();
+        stateCounter = findViewById(R.id.result);
+        defaultCounter = findViewById(R.id.default_counter);
+        updateCounterView();
+        updateDefaultView();
         // Establecemos los escuchadores de eventos
         this.negative = findViewById(R.id.cB_negative);
         negative.setOnClickListener(this);
@@ -82,23 +85,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         SharedPreferences data = (SharedPreferences) PreferenceManager.getDefaultSharedPreferences(this);
         counter = data.getInt("counterValue", 0);
         valueDefault = data.getInt("valueDefault", 0);
-        showCounter();
-        showDefault();
+        updateCounterView();
+        updateDefaultView();
     }
 
+    /**
+     * Incrementa el contador e invoca showCounter();
+     * @param view Button desde el que se llama al método. No tiene uso.
+     */
     public void increment(View view) {
         counter++;
-        showCounter();
+        updateCounterView();
     }
 
+    /**
+     * Decrementa el contador e invoca showCounter(),
+     * previamente verifica si se permiten valores negativos para el contador.
+     * Si no se permiten negativos, el mínimo valor de contador será 0.
+     * @param view Button desde el que se llama al método. No tiene uso.
+     */
     public void decrement(View view) {
         counter--;
         if (!negative.isChecked() && counter<0){
                 counter=0;
         }
-        showCounter();
+        updateCounterView();
     }
 
+    /**
+     * Restablece el contador al valor por defecto definido.
+     * Si no existe un valor por defecto previo se restablece a 0.
+     * @param vista Button desde el que se llama al método. No tiene uso.
+     */
     public void reset(View vista) {
         EditText defaultCounter = findViewById(R.id.default_counter);
         String counterDefaultString = defaultCounter.getText().toString();
@@ -107,16 +125,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         counter = Integer.parseInt(counterDefaultString);
         valueDefault = counter;
-        showCounter();
+        updateCounterView();
     }
 
-    public void showCounter() {
-        TextView status = findViewById(R.id.result);
-        status.setText(String.valueOf(counter));
+    public void updateCounterView() {
+        stateCounter.setText(String.valueOf(counter));
     }
-    public void showDefault(){
+    public void updateDefaultView(){
         if (valueDefault !=0){
-            EditText defaultCounter = findViewById(R.id.default_counter);
             defaultCounter.setText(String.valueOf(valueDefault));
         }
     }
@@ -136,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (!negative.isChecked() && counter<0){
                     counter=0;
                 }
-                showCounter();
+                updateCounterView();
                 break;
             case R.id.button_reset:
                 reset(view);
